@@ -6,7 +6,7 @@ from .models import Upload, Profile
 class UploadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Upload
-        fields = ['id', 'user', 'file', 'uploaded_at']
+        fields = ['id', 'file', 'uploaded_at', 'status', 'converted_file']
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:

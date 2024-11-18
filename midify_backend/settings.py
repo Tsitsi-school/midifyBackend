@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',  # To handle cross-origin requests
     'api',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -131,6 +132,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
@@ -142,3 +144,4 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 
 # superuser info - tsitsi, tsitsi@mail.com, 1234
+# token key 07d6787ec303767bdb118a0b6a0ac5802ee75537
