@@ -1,6 +1,4 @@
 # api/models.py
-# note for actions here - send to you
-
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -10,7 +8,7 @@ class Upload(models.Model):
     status = models.CharField(
         max_length=20, 
         choices=[("pending", "Pending"), ("processing", "Processing"), ("completed", "Completed")], 
-        default="pending"  # Add a default value
+        default="pending"  
     )
     converted_file = models.FileField(upload_to="converted/", null=True, blank=True)  # Holds converted MIDI files
     user = models.ForeignKey(
