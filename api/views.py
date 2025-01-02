@@ -14,6 +14,10 @@ from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
 from django.http import JsonResponse
 from django.middleware.csrf import get_token
+from django.shortcuts import get_object_or_404
+from django.http import FileResponse
+
+
 
 
 # ViewSet for managing uploads
@@ -87,6 +91,14 @@ class UploadHistoryView(APIView):
         uploads = Upload.objects.filter(user=request.user)
         serializer = UploadHistorySerializer(uploads, many=True)
         return Response(serializer.data)
+
+class FetchImage(APIView):
+    permission_classes = [IsAuthenticated]  
+
+    def get(self, request, upload_id):
+        upload = get_object_or_404(Upload, id=upload_id, user=request.user)
+        return FileResponse(upload.file.open(), as_attachment=True, filename=upload.file.name)
+
 
 class RegisterUserView(APIView):
     def post(self, request):
